@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tsconfig.vitest.json"],
+  "include": ["src/env.d.ts", "src/**/*", "src/**/*.vue", "tsconfig.vitest.json"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     // Extra safety for array and object lookups, but may have false positives.
