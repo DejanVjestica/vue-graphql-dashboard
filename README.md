@@ -1,54 +1,54 @@
-# vue-graphql-dashboard
+# 🌍 Vue GraphQL Countries Dashboard
 
-This template should help get you started developing with Vue 3 in Vite.
+![Vue](https://img.shields.io/badge/Vue.js-3.x-42b883?logo=vue.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-Unit%20Testing-6E9F18?logo=vitest&logoColor=white)
+![Status](https://img.shields.io/badge/status-active-success)
 
-## Recommended IDE Setup
+A Vue 3 + TypeScript application demonstrating a modular GraphQL data layer, composable architecture, and reactive search with request cancellation.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+The project showcases a fully custom GraphQL client built on the Fetch API, with a scalable composable structure and clean separation between UI, domain logic, and API layer.
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 🚀 Features
 
-## Type Support for `.vue` Imports in TS
+- Vue 3 Composition API (`<script setup>`)
+- TypeScript with strict typing
+- Custom GraphQL client using Fetch API
+- Composable architecture (`useGraphQL`, `useCountries`)
+- Real-time search with reactive state
+- Request cancellation using `AbortController`
+- Clean separation of concerns (API / composables / UI)
+- Vite for fast development and build
+- Unit testing with Vitest
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 🛠 Tech Stack
 
-## Customize configuration
+- Vue 3 (Composition API)
+- TypeScript
+- Vite
+- GraphQL (custom Fetch-based client)
+- Native Web APIs (AbortController, Fetch)
+- Vitest (unit testing framework)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## 🔍 GraphQL Integration
 
-```sh
-pnpm install
-```
+The application uses the public Countries GraphQL API:
 
-### Compile and Hot-Reload for Development
+https://countries.trevorblades.com/
 
-```sh
-pnpm dev
-```
+### Example query:
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
+```graphql
+query Countries($search: String) {
+  countries(filter: { name: { regex: $search } }) {
+    code
+    name
+    emoji
+  }
+}
 ```
