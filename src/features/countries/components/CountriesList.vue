@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useCountries } from '@/features/countries/composables/useCountries'
 import CountriesSearch from '@/features/countries/components/CountriesSearch.vue'
 import { useDebounce } from '@/composables/useDebounce'
 
 const searchTerm = ref('')
 const debounced = useDebounce(searchTerm, 300)
-const { data, loading, error, executeQuery, abort } = useCountries(searchTerm)
-const countries = computed(() => data.value?.countries || [])
+const { countries, loading, error, executeQuery, abort } = useCountries(searchTerm)
 
 watch(debounced, async () => {
   await executeQuery()
