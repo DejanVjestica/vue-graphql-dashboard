@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { fetchGraphQL } from '@/graphql/fetchGraphQL'
 
-export function useGraphQL<T>(query: string, variables?: Record<string, unknown>) {
+export function useGraphQL<T>(query: string, getVariables?: () => Record<string, unknown>) {
   const data = ref<T | null>(null)
   const loading = ref(true)
   const error = ref<string | null>(null)
@@ -21,6 +21,7 @@ export function useGraphQL<T>(query: string, variables?: Record<string, unknown>
     controller.value = new AbortController()
 
     try {
+      const variables = getVariables?.()
       data.value = await fetchGraphQL<T>(query, variables, controller.value.signal)
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'An unknown error occurred'
